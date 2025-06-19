@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>My Pocket Dashboard</title>
+  <link rel="manifest" href="manifest.json">
+  <link rel="icon" type="image/png" href="icon.png">
+  <link rel="apple-touch-icon" href="icon.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@400;700&display=swap" rel="stylesheet">
+  <link href="style.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+  <div id="master-password-modal" class="modal" style="display: none; align-items: center; justify-content: center;">
+    <div class="modal-content">
+      <h2 id="modal-title">Set Your Master Password</h2>
+      <p id="modal-text">This password will protect all your data. Remember it, as it cannot be recovered.</p>
+      <input type="password" id="master-password-input" placeholder="Enter master password...">
+      <button id="master-password-submit">Submit</button>
+      <p id="modal-error" class="error-text"></p>
+    </div>
+  </div>
+  <header><h1>My Pocket Dashboard</h1></header>
+  <nav class="tab-nav">
+    <button class="tab-link active" data-tab="todo">📝 To-Do</button>
+    <button class="tab-link" data-tab="passwords">🔑 Passwords</button>
+    <button class="tab-link" data-tab="snippets">💻 Code Snippets</button>
+  </nav>
+  <main>
+    <div id="todo" class="tab-content active">
+      <input type="text" class="search-bar" id="todo-search" placeholder="Kaam search karo...">
+      <div class="input-container"><input type="text" id="todo-input" placeholder="Naya kaam likho..."><button id="mic-btn">🎤</button></div>
+      <button id="add-todo-btn" class="add-btn">Add Task</button>
+      <ul id="todo-list" class="item-list"></ul>
+    </div>
+    <div id="passwords" class="tab-content">
+      <input type="text" class="search-bar" id="password-search" placeholder="Website search karo...">
+      <input type="text" id="password-site-input" placeholder="Website ya App ka naam..."><input type="text" id="password-value-input" placeholder="Password..."><button id="add-password-btn" class="add-btn">Add Password</button>
+      <ul id="password-list" class="item-list"></ul>
+    </div>
+    <div id="snippets" class="tab-content">
+      <input type="text" class="search-bar" id="snippet-search" placeholder="Title search karo...">
+      <input type="text" id="snippet-title-input" placeholder="Code ka title..."><textarea id="snippet-code-input" placeholder="Yahan apna code paste karein..."></textarea><button id="add-snippet-btn" class="add-btn">Add Snippet</button>
+      <ul id="snippet-list" class="item-list"></ul>
+    </div>
+  </main>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.1.1/crypto-js.min.js"></script>
+  <script src="script.js"></script>
+  <footer><p>DEVELOPED BY ADITYA SINGH</p></footer>
+  <script>
+    if ('serviceWorker' in navigator) {
+      window.addEventListener('load', () => {
+        navigator.serviceWorker.register('/sw.js')
+          .then(registration => { console.log('ServiceWorker registration successful'); })
+          .catch(error => { console.log('ServiceWorker registration failed: ', error); });
+      });
+    }
+  </script>
+</body>
+</html>
